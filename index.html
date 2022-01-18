@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
    <head>
@@ -403,7 +402,7 @@ function getRndInteger(min, max) {
 
 let speed;
 
-speed = 2500;
+speed = 'Determining Bandwidth_speedMbps';
 
 
 
@@ -504,6 +503,8 @@ var config = {
 
  };
 
+ Gparameters = { x: 0, y: 0, z: 0}
+
 var pause = false;
 var stats = new Stats();
 var aspect, gl;
@@ -533,17 +534,20 @@ function init()
   //console.log("bandwidth:"+ speed);
   // panel.add( message, 'bandwidth');
 
-   document.getElementById("fullscreen").innerHTML = "bandwidth: "+speed+ " Mbps";
+   //document.getElementById("fullscreen").innerHTML = "bandwidth: "+speed+ " Mbps";
+
+
 
 
  
 }
 
+ //gui.add( Gparameters, 'x' ).min(0).max(200); // note no need to use the method .listen()
 
-   /*panel = gui.addFolder('Bandwidth speedMbps');
-   panel.add( message, 'bandwidth').listen();
-   panel.open();*/
 
+  panel = gui.addFolder('Bandwidth_speedMbps');
+  panel.add( message, 'bandwidth');
+  panel.open();
 
 
    panel = gui.addFolder('Camera Position');
@@ -643,6 +647,10 @@ function init()
       if (!pause)
       {
          stats.begin();
+
+  //Gparameters.x++;
+  message.bandwidth = speed;
+gui.updateDisplay();
          
          // create vertices to fill the canvas with a single quad 
          var vertices = new Float32Array(
@@ -794,8 +802,8 @@ function init()
  -->
       <canvas id="canvas" width="768" height="512"></canvas>
       <!--<canvas id="canvas" width="3840" height="2160"></canvas>-->
-      <a href="#" id="fullscreen">bandwidth speed mpbs</a> 
-    
+<!--       <a href="#" id="fullscreen">bandwidth speed mpbs</a> 
+ -->    
 
    </body>
 </html>
